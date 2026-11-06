@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "pack": "mkdir -p dist && npm pack --workspaces --pack-destination dist",
-    "test": "node --test packages/core/test/ packages/angular/test/"
+    "test": "node --test packages/*/test/*.test.mjs"
   },
   "engines": {
     "node": ">=20.11"
