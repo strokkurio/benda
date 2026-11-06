@@ -1,7 +1,7 @@
 // Static analysis against a small workspace that holds the cases the analysis once got wrong: a store over two APIs,
 // a local named like a signal, a store behind a barrel, a constant as validator limit, a repeated selector, a root
 // project from `ng new`, path aliases from an extended tsconfig and a loop variable used twice.
-// Run: node --test packages/angular/test/ (needs TypeScript: from this repo, or BENDA_TEST_TYPESCRIPT=<package dir>).
+// Run: node --test packages/angular/test/*.test.mjs (needs TypeScript: from this repo, or BENDA_TEST_TYPESCRIPT=<package dir>).
 import assert from 'node:assert/strict';
 import { mkdirSync, mkdtempSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';

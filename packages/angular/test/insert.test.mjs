@@ -1,6 +1,6 @@
 // Direct insertion of a catalog component (Components tab): the snippet lands at the right place of the template,
 // the imports follow, and an ambiguous place writes nothing.
-// Run: node --test packages/angular/test/ (needs TypeScript: from this repo, or BENDA_TEST_TYPESCRIPT=<package dir>).
+// Run: node --test packages/angular/test/*.test.mjs (needs TypeScript: from this repo, or BENDA_TEST_TYPESCRIPT=<package dir>).
 import assert from 'node:assert/strict';
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
