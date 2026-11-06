@@ -1,0 +1,50 @@
+{
+  "name": "main",
+  "target": "branch",
+  "enforcement": "active",
+  "conditions": {
+    "ref_name": {
+      "include": ["~DEFAULT_BRANCH"],
+      "exclude": []
+    }
+  },
+  "rules": [
+    { "type": "deletion" },
+    { "type": "non_fast_forward" },
+    { "type": "required_linear_history" },
+    {
+      "type": "pull_request",
+      "parameters": {
+        "required_approving_review_count": 0,
+        "dismiss_stale_reviews_on_push": false,
+        "require_code_owner_review": false,
+        "require_last_push_approval": false,
+        "required_review_thread_resolution": true,
+        "allowed_merge_methods": ["squash"]
+      }
+    },
+    {
+      "type": "required_status_checks",
+      "parameters": {
+        "strict_required_status_checks_policy": true,
+        "do_not_enforce_on_create": false,
+        "required_status_checks": [
+          { "context": "Test (Node 20)", "integration_id": 15368 },
+          { "context": "Test (Node 22)", "integration_id": 15368 },
+          { "context": "Test (Node 24)", "integration_id": 15368 },
+          { "context": "Package and production build", "integration_id": 15368 },
+          { "context": "Docs build", "integration_id": 15368 },
+          { "context": "Workflow security lint", "integration_id": 15368 },
+          { "context": "Dependency review", "integration_id": 15368 },
+          { "context": "Conventional Commit title", "integration_id": 15368 },
+          { "context": "Analyze (javascript-typescript)", "integration_id": 15368 },
+          { "context": "Analyze (actions)", "integration_id": 15368 }
+        ]
+      }
+    }
+  ],
+  "bypass_actors": [
+    { "actor_id": 5, "actor_type": "RepositoryRole", "bypass_mode": "pull_request" },
+    { "actor_id": 2, "actor_type": "RepositoryRole", "bypass_mode": "pull_request" }
+  ]
+}

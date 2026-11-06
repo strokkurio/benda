@@ -134,7 +134,7 @@ npm test             # node --test, no test framework
 
 `packages/angular/test/` runs the static analysis against a small generated workspace, with the cases it once got
 wrong, and inserts catalog components into generated templates. The adapter parses with the workspace's TypeScript,
-so the test needs one: installed in this repo, or `BENDA_TEST_TYPESCRIPT=<path to a typescript package>`; without it
+so the test needs one: the repo's dev dependency, or `BENDA_TEST_TYPESCRIPT=<path to a typescript package>`; without it
 the tests are skipped. `packages/core/test/` covers the core's own logic, such as how a failed run's provider error is
 explained.
 
@@ -152,6 +152,72 @@ npm i -D ../benda/dist/strokkur-benda-<version>.tgz ../benda/dist/strokkur-benda
 Then check in the browser: the overlay loads, a selection shows the right file and line, a task sent with the watch
 mode running reaches Claude, the Data tab captures requests, `npx benda check` runs, and `ng build` output contains no
 reference to the overlay.
+
+CI covers the parts that need no browser: it builds the demo against the packed tarballs and fails if the production
+build references the overlay.
+
+## Continuous integration and releases
+
+`.github/workflows/`:
+
+| Workflow       | Runs on                      | Does                                                                                                    |
+|----------------|------------------------------|---------------------------------------------------------------------------------------------------------|
+| `ci.yml`       | push to `main`, pull request | tests on Node 20/22/24, pack + demo production build, strict docs build, zizmor, dependency review (PRs) |
+| `pr-title.yml` | pull request                 | the title is a [Conventional Commit](https://www.conventionalcommits.org)                               |
+| `codeql.yml`   | push, pull request, weekly   | CodeQL for JavaScript and the workflows themselves                                                      |
+| `release.yml`  | push to `main`               | release-please; after a release: all of `ci.yml`, publish to npm, then the docs to GitHub Pages         |
+| `docs.yml`     | release, manual              | builds the docs at a release tag and deploys them to GitHub Pages                                       |
+
+Dependabot updates the actions (pinned by commit SHA) and the npm dependencies weekly, after a seven-day cooldown.
+
+### Commits and versions
+
+Pull requests are squash-merged, and the PR title becomes the commit on `main`, so the title follows Conventional
+Commits: `feat(angular): …`, `fix: …`, `docs: …`. Both packages share one version. Before 1.0, `feat` and breaking
+changes (`feat!:`, or a `BREAKING CHANGE:` footer) raise the minor version, `fix` and `perf` the patch; `docs`, `ci`,
+`chore`, `test` and `refactor` cause no release. A `Release-As: 0.3.0-beta.1` footer in the commit forces a version.
+
+### Releasing
+
+[release-please](https://github.com/googleapis/release-please) keeps a release PR open that raises the version in both
+packages, the adapter's peer range on `@strokkur/benda` and the lockfile, and writes `CHANGELOG.md`
+(`release-please-config.json`, `.release-please-manifest.json`).
+
+1. Run the release check above on the release PR's branch.
+2. Merge the release PR. release-please tags `v<version>` and creates the GitHub release.
+3. The release workflow runs CI again, checks that both packages carry the tag's version and waits for approval of the
+   `npm` environment; then it publishes core first, then the adapter. A pre-release version (`0.3.0-beta.1`) goes to the
+   `next` dist-tag.
+4. After publishing, the docs of the tag go to GitHub Pages, so the site describes the version on npm; pre-releases
+   leave the docs at the last stable version.
+
+npm publishes through trusted publishing (OIDC), with provenance; there is no npm token in the repository.
+
+The release PR is created with the workflow token, and GitHub does not start workflows for such PRs: its required
+checks stay pending, so a maintainer merges it with the ruleset bypass. Its content is only versions and the changelog,
+and the release workflow runs the full CI before publishing.
+
+### One-time setup
+
+- **npm:** create the `strokkur` organisation. Trusted publishing can only be configured for existing packages, so
+  publish `0.1.0` once by hand (`npm publish -w packages/core && npm publish -w packages/angular`) and create the
+  GitHub release `v0.1.0` on that commit, so release-please starts from it. Then, for each package, add a trusted
+  publisher (Settings → Trusted publishing: GitHub Actions, repository `strokkurio/benda`, workflow `release.yml`,
+  environment `npm`) and set "Require two-factor authentication and disallow tokens".
+- **Repository settings:** allow squash merging only, with the pull request title as default commit message; allow
+  GitHub Actions to create pull requests (Settings → Actions → General); enable Sponsorships (Settings → General →
+  Features), which shows the button from `.github/FUNDING.yml`.
+- **GitHub environment `npm`:** required reviewers, deployments only from `main`.
+- **GitHub Pages:** source "GitHub Actions" (Settings → Pages). The first site comes from the hand-made `v0.1.0`:
+  run the `Docs` workflow on `main` with `ref` `v0.1.0` (Actions → Docs → Run workflow).
+- **Rulesets:** import `.github/rulesets/main.json` and `.github/rulesets/tags.json` (Settings → Rules → Rulesets →
+  New ruleset → Import a ruleset). `main`: pull request with squash merge, all CI, PR title and CodeQL jobs as required
+  checks, no force push, maintainers may bypass on pull requests. Tags `v*`: no deletion or update. Creation stays open
+  because release-please tags with the workflow token, and a ruleset cannot list GitHub Actions as bypass actor; a
+  hand-made tag publishes nothing, since only the release workflow on `main` publishes. GitHub does not read these files; when a job is renamed, update
+  the check names in `main.json` and import it again.
+- **Security settings:** Dependabot alerts and security updates, secret scanning with push protection, private
+  vulnerability reporting. Dependency review needs the dependency graph (on by default for public repositories).
 
 ## Roadmap
 

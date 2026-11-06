@@ -11,7 +11,8 @@ Point at an element in a running web app, an AI agent changes exactly that eleme
 ## Status
 
 Angular is supported (`packages/core`, `packages/angular`, `skill/`); not yet published to npm. Next on the roadmap:
-Vite plugin and Vue adapter.
+Vite plugin and Vue adapter. License: MIT (`LICENSE`, copied into each package because npm packs it from the package
+directory).
 
 ## Rules
 
@@ -48,4 +49,3 @@ API :4010, on `file:` dependencies to `packages/core` and `packages/angular`; `.
   `@strokkur/*`. Benda uses `@strokkur/*` for now; a separate `@benda/*` scope would follow the Tafla pattern.
 - **Skill distribution:** the skill lives in `skill/` and users copy it by hand; shipping it in the npm package or as
   a Claude Code plugin (together with the hooks) would make that automatic.
-- **License:** the packages are `UNLICENSED` so far.

@@ -1,4 +1,4 @@
-// Run: node --test packages/core/test/
+// Run: node --test packages/core/test/*.test.mjs
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { explainError } from '../src/agents.mjs';

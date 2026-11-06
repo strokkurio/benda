@@ -1,0 +1,79 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  # Keeps the release PR (version bump and CHANGELOG from the Conventional Commits) up to date; merging it tags the
+  # release and creates the GitHub release.
+  release-please:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    outputs:
+      created: ${{ steps.release.outputs.release_created }}
+      tag: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
+        id: release
+
+  ci:
+    needs: release-please
+    if: needs.release-please.outputs.created == 'true'
+    uses: $/.github/workflows/ci.yml
+
+  publish:
+    name: Publish to npm
+    needs: [release-please, ci]
+    runs-on: ubuntu-latest
+    # Required reviewers on this environment are the manual gate before anything reaches the registry.
+    environment: npm
+    permissions:
+      contents: read
+      id-token: write # npm trusted publishing, provenance
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.release-please.outputs.tag }}
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - name: Tag matches the package versions
+        env:
+          TAG: ${{ needs.release-please.outputs.tag }}
+        run: |
+          for p in core angular; do
+            v=$(node -p "require('./packages/$p/package.json').version")
+            if [ "v$v" != "$TAG" ]; then
+              echo "::error::packages/$p is $v, the tag is $TAG"
+              exit 1
+            fi
+          done
+      # Core first: the adapter's peer dependency points at it.
+      - name: Publish
+        env:
+          TAG: ${{ needs.release-please.outputs.tag }}
+        run: |
+          tag=latest
+          case "$TAG" in *-*) tag=next ;; esac
+          npm publish -w packages/core --tag "$tag"
+          npm publish -w packages/angular --tag "$tag"
+
+  # After publishing, so the site never describes a version that is not on npm yet; pre-releases keep the stable docs.
+  docs:
+    needs: [release-please, publish]
+    if: ${{ !contains(needs.release-please.outputs.tag, '-') }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: $/.github/workflows/docs.yml
+    with:
+      ref: ${{ needs.release-please.outputs.tag }}
