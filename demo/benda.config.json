@@ -1,5 +1,5 @@
 {
-  "adapter": "@strokkur/benda-angular",
+  "adapter": "@strokkurio/benda-angular",
   "name": "benda-demo",
   "defaultAgent": "claude:sonnet",
   "port": 4499

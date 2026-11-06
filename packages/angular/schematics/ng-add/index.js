@@ -1,5 +1,5 @@
 'use strict';
-// `ng add @strokkur/benda-angular`: installs Benda into an Angular workspace. Idempotent – safe to re-run.
+// `ng add @strokkurio/benda-angular`: installs Benda into an Angular workspace. Idempotent – safe to re-run.
 // Projects that still carry a copy of the Angular AI Designer (designer/, src/designer.ts) are migrated.
 //
 // Plain functions on the schematic Tree instead of @angular-devkit/schematics helpers: from a `file:` link this
@@ -11,8 +11,8 @@ const { homedir } = require('node:os');
 const { basename, join, posix, resolve } = require('node:path');
 const { version } = require('../../package.json');
 
-const CORE = '@strokkur/benda';
-const ADAPTER = '@strokkur/benda-angular';
+const CORE = '@strokkurio/benda';
+const ADAPTER = '@strokkurio/benda-angular';
 const CONFIG = 'benda.config.json';
 // Starter tags for "#" in the panel – written once; a project that sets prompt.tags (also to []) keeps its own.
 const DEFAULT_TAGS = [
@@ -20,7 +20,7 @@ const DEFAULT_TAGS = [
 ];
 const DEFAULT_PORT = 4399;
 // node + path instead of `npx benda`: PreToolUse fires on every tool call, and npx adds noticeable startup time.
-const hookCommand = (event) => `node "$CLAUDE_PROJECT_DIR/node_modules/@strokkur/benda/bin/benda.mjs" hook ${event}`;
+const hookCommand = (event) => `node "$CLAUDE_PROJECT_DIR/node_modules/@strokkurio/benda/bin/benda.mjs" hook ${event}`;
 const HOOKS = [
   ['UserPromptSubmit', 'user-prompt-submit'],
   ['PreToolUse', 'pre-tool-use'],
@@ -266,7 +266,7 @@ exports.ngAdd = (options) => async (tree, context) => {
     }
     if (code.includes('loadBenda')) {
       // any form of the import counts – Prettier's double quotes or more names in the braces
-      if (!/import\s*\{[^}]*\bloadBenda\b[^}]*\}\s*from\s*['"]@strokkur\/benda-angular['"]/.test(code)) code = addImport(code, importLine);
+      if (!/import\s*\{[^}]*\bloadBenda\b[^}]*\}\s*from\s*['"]@strokkurio\/benda-angular['"]/.test(code)) code = addImport(code, importLine);
       // port and name follow benda.config.json, also when a re-run changes them
       code = code.replace(/loadBenda\(\s*(\{[^}]*\})?\s*\)/g, call);
       if (code !== read(tree, entry)) {

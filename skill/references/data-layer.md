@@ -210,7 +210,7 @@ data task.
 
 ## Using it in an existing project
 
-1. Install Benda (`npx ng add @strokkur/benda-angular`). It adds `api.dir` and an empty `api.mocks` to
+1. Install Benda (`npx ng add @strokkurio/benda-angular`). It adds `api.dir` and an empty `api.mocks` to
    `benda.config.json` and appends these rules to `AGENTS.md`.
 2. Point `api.dir` at the spec folder if it is not `api/`. Set `api.generate` if the generator is run by
    a custom command.

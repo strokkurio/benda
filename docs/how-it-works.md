@@ -40,13 +40,13 @@ flowchart LR
 4. **Edit and reload.** The agent edits the file. A `PreToolUse` hook streams each step to the overlay, the `Stop`
    hook reports "✓ Done" with Claude's summary, and the dev server reloads the page. The selection survives the reload.
 
-Benda is split into a framework-independent core (`@strokkur/benda`: bridge, overlay, CLI, agent runners, network
-capture, OpenAPI validation) and a framework adapter (`@strokkur/benda-angular`: component lookup, source index, data
+Benda is split into a framework-independent core (`@strokkurio/benda`: bridge, overlay, CLI, agent runners, network
+capture, OpenAPI validation) and a framework adapter (`@strokkurio/benda-angular`: component lookup, source index, data
 lineage, form analysis, installer).
 
 ## Packages
 
-| Package                                     | Contents                                                       |
-| ------------------------------------------- | -------------------------------------------------------------- |
-| `@strokkur/benda`        | bridge, overlay with network capture, `benda` CLI, Claude Code hooks, runner (Claude Code, OpenCode), OpenAPI index (diff, validation, simulation) |
-| `@strokkur/benda-angular` | Angular adapter (source index, data lineage, forms, live state, check, impact), `loadBenda()`, `ng add` installer |
+| Package                     | Contents                                                                                                                                           |
+|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| `@strokkurio/benda`         | bridge, overlay with network capture, `benda` CLI, Claude Code hooks, runner (Claude Code, OpenCode), OpenAPI index (diff, validation, simulation) |
+| `@strokkurio/benda-angular` | Angular adapter (source index, data lineage, forms, live state, check, impact), `loadBenda()`, `ng add` installer                                  |

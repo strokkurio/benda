@@ -13,7 +13,7 @@
 ```bash
 npx @angular/cli@latest new my-app --style tailwind --ssr false --ai-config claude-code
 cd my-app
-npx ng add @strokkur/benda-angular
+npx ng add @strokkurio/benda-angular
 npm run dev
 ```
 
@@ -32,7 +32,7 @@ end:
 In the root of your Angular workspace:
 
 ```bash
-npx ng add @strokkur/benda-angular
+npx ng add @strokkurio/benda-angular
 ```
 
 Options:
@@ -45,15 +45,15 @@ Options:
 
 The installer is idempotent and changes only these files:
 
-| File                       | Change                                                                                   |
-| -------------------------- | ---------------------------------------------------------------------------------------- |
-| `main.ts` / `bootstrap.ts` | `loadBenda({ name })` after `bootstrapApplication(...)` – a no-op in production builds   |
+| File                       | Change                                                                                                      |
+|----------------------------|-------------------------------------------------------------------------------------------------------------|
+| `main.ts` / `bootstrap.ts` | `loadBenda({ name })` after `bootstrapApplication(...)` – a no-op in production builds                      |
 | `benda.config.json`        | new: adapter, project name, port, agent and API settings, a starter tag ([Configuration](configuration.md)) |
-| `.claude/settings.json`    | Claude Code hooks for `UserPromptSubmit`, `PreToolUse` and `Stop` (not when local-only)  |
-| `package.json`             | scripts `dev` (bridge + all apps) and `benda` (bridge only); `@strokkur/benda` as devDependency |
-| `.gitignore`               | `/.benda` (runtime state)                                                                |
-| `AGENTS.md`                | short sections on the selection loop and the data-layer rules, read by every agent       |
-| `CLAUDE.md`                | the import `@AGENTS.md`, so Claude Code reads the same rules (not when local-only)       |
+| `.claude/settings.json`    | Claude Code hooks for `UserPromptSubmit`, `PreToolUse` and `Stop` (not when local-only)                     |
+| `package.json`             | scripts `dev` (bridge + all apps) and `benda` (bridge only); `@strokkurio/benda` as devDependency           |
+| `.gitignore`               | `/.benda` (runtime state)                                                                                   |
+| `AGENTS.md`                | short sections on the selection loop and the data-layer rules, read by every agent                          |
+| `CLAUDE.md`                | the import `@AGENTS.md`, so Claude Code reads the same rules (not when local-only)                          |
 
 If your project already has a `dev` script, the installer keeps it. Start the bridge next to your usual dev server
 instead:

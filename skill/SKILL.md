@@ -26,13 +26,13 @@ Read `references/angular.md`, section "Set up a project", and follow it. It ends
 Angular:
 
 ```bash
-npx ng add @strokkur/benda-angular [--project <app>[,<app>]] [--port 4399] [--agent opencode:<provider>/<model>]
+npx ng add @strokkurio/benda-angular [--project <app>[,<app>]] [--port 4399] [--agent opencode:<provider>/<model>]
 ```
 
 The schematic is idempotent. It:
 
-- calls `loadBenda({ name })` from `@strokkur/benda-angular` after `bootstrapApplication` in every app (dev mode only; the
-  overlay is served by the bridge and never enters the bundle)
+- calls `loadBenda({ name })` from `@strokkurio/benda-angular` after `bootstrapApplication` in every app (dev mode only;
+  the overlay is served by the bridge and never enters the bundle)
 - writes `benda.config.json`: adapter, project `name`, port (the first one from 4399 up that no other Benda project on
   this machine uses), OpenCode model filter, `api.dir` (spec folder, default `api`), `api.mocks`
 - adds the Claude Code hooks to `.claude/settings.json` (`UserPromptSubmit` → selection into the context,
@@ -63,8 +63,8 @@ If the specs are not below `api/`, change `api.dir`. If the generator runs throu
 If the schematic reports "Still to do by hand", add the `loadBenda()` call yourself. Then tell the user that the hooks
 only apply once Claude Code has loaded them (open `/hooks` or restart the session).
 
-Updates: `npm i -D @strokkur/benda@latest @strokkur/benda-angular@latest`, then restart `npm run dev` (or the bridge),
-so it serves the new overlay and endpoints.
+Updates: `npm i -D @strokkurio/benda@latest @strokkurio/benda-angular@latest`, then restart `npm run dev` (or the
+bridge), so it serves the new overlay and endpoints.
 
 ## C. Design loop
 

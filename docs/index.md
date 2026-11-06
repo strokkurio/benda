@@ -73,7 +73,7 @@ line. The dev server reloads, and you see the result where you asked for it.
 In the root of your Angular workspace:
 
 ```bash
-npx ng add @strokkur/benda-angular
+npx ng add @strokkurio/benda-angular
 npm run dev
 ```
 

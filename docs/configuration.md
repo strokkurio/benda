@@ -3,29 +3,29 @@
 `benda.config.json` in the project root, written by `ng add`. Restart `npm run dev` (or the bridge) after changing
 `adapter`, `port` or `api.mocks`; the other settings apply immediately.
 
-| Key                     | Default              | Meaning                                                                    |
-| ----------------------- | -------------------- | -------------------------------------------------------------------------- |
-| `adapter`               | –                    | framework adapter package, e.g. `@strokkur/benda-angular`; without it the overlay shows plain DOM data |
-| `name`                  | `package.json` name  | project name; the bridge serves the overlay only to `loadBenda({ name })` with the same name |
-| `port`                  | `4399`               | bridge port; also pass it to `loadBenda({ port })`                         |
-| `claude`                | `true`               | `false`: local-only – no Claude Code in the panel, the hooks do nothing    |
-| `claude.models`         | `["opus", "sonnet", "haiku"]` | models offered for runs the bridge starts (aliases or full model ids) |
-| `claude.permissionMode` | `acceptEdits`        | permission mode of those runs (`--permission-mode`)                        |
-| `claude.allowedTools`   | `[]`                 | tools they may use without asking, e.g. `["Bash(npm run build:*)"]`; `npx benda proposal`, `npx benda check` and `npx benda components` are always allowed |
-| `claude.timeoutMinutes` | `15`                 | cancels such a run after this time                                         |
-| `claude.bin`            | `claude`             | path of the Claude Code executable                                         |
-| `editor`                | `vscode`             | how the Inventory opens files: `vscode`, `cursor`, `idea`, `webstorm`, or a URL with `{path}` and `{line}` |
-| `defaultAgent`          | `claude`             | agent preselected in the panel: `claude` (terminal), `claude:<model>` or `opencode:<provider/model>`; local-only: the first OpenCode model |
-| `opencode.include`      | `["*"]`              | globs for the OpenCode models offered under **Run with**                   |
-| `opencode.autoApprove`  | `true`               | lets the model use tools without asking (nobody could answer)              |
-| `opencode.timeoutMinutes` | `15`               | cancels a run after this time                                              |
-| `opencode.bin`          | `opencode`           | path of the OpenCode executable                                            |
-| `prompt.rules`          | –                    | project rules added to every context block (string or list), see below    |
-| `prompt.templates`      | `[]`                 | task templates offered under **Template**: `{ "id", "label", "text" }`     |
-| `prompt.tags`           | `[]`                 | text added to a task with **#**: `{ "id", "label", "text" }`               |
-| `api.dir`               | `api`                | folder with OpenAPI specs (YAML needs `yaml` or `js-yaml` installed)       |
-| `api.generate`          | detected             | command that regenerates the API clients                                   |
-| `api.mocks`             | `[]`                 | mock servers started by `benda dev`: `{ "spec", "port" }` (Prism, needs `@stoplight/prism-cli`) or `{ "script", "port" }` (your Node script, started with `--port`) |
+| Key                       | Default                       | Meaning                                                                                                                                                             |
+|---------------------------|-------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `adapter`                 | –                             | framework adapter package, e.g. `@strokkurio/benda-angular`; without it the overlay shows plain DOM data                                                            |
+| `name`                    | `package.json` name           | project name; the bridge serves the overlay only to `loadBenda({ name })` with the same name                                                                        |
+| `port`                    | `4399`                        | bridge port; also pass it to `loadBenda({ port })`                                                                                                                  |
+| `claude`                  | `true`                        | `false`: local-only – no Claude Code in the panel, the hooks do nothing                                                                                             |
+| `claude.models`           | `["opus", "sonnet", "haiku"]` | models offered for runs the bridge starts (aliases or full model ids)                                                                                               |
+| `claude.permissionMode`   | `acceptEdits`                 | permission mode of those runs (`--permission-mode`)                                                                                                                 |
+| `claude.allowedTools`     | `[]`                          | tools they may use without asking, e.g. `["Bash(npm run build:*)"]`; `npx benda proposal`, `npx benda check` and `npx benda components` are always allowed          |
+| `claude.timeoutMinutes`   | `15`                          | cancels such a run after this time                                                                                                                                  |
+| `claude.bin`              | `claude`                      | path of the Claude Code executable                                                                                                                                  |
+| `editor`                  | `vscode`                      | how the Inventory opens files: `vscode`, `cursor`, `idea`, `webstorm`, or a URL with `{path}` and `{line}`                                                          |
+| `defaultAgent`            | `claude`                      | agent preselected in the panel: `claude` (terminal), `claude:<model>` or `opencode:<provider/model>`; local-only: the first OpenCode model                          |
+| `opencode.include`        | `["*"]`                       | globs for the OpenCode models offered under **Run with**                                                                                                            |
+| `opencode.autoApprove`    | `true`                        | lets the model use tools without asking (nobody could answer)                                                                                                       |
+| `opencode.timeoutMinutes` | `15`                          | cancels a run after this time                                                                                                                                       |
+| `opencode.bin`            | `opencode`                    | path of the OpenCode executable                                                                                                                                     |
+| `prompt.rules`            | –                             | project rules added to every context block (string or list), see below                                                                                              |
+| `prompt.templates`        | `[]`                          | task templates offered under **Template**: `{ "id", "label", "text" }`                                                                                              |
+| `prompt.tags`             | `[]`                          | text added to a task with **#**: `{ "id", "label", "text" }`                                                                                                        |
+| `api.dir`                 | `api`                         | folder with OpenAPI specs (YAML needs `yaml` or `js-yaml` installed)                                                                                                |
+| `api.generate`            | detected                      | command that regenerates the API clients                                                                                                                            |
+| `api.mocks`               | `[]`                          | mock servers started by `benda dev`: `{ "spec", "port" }` (Prism, needs `@stoplight/prism-cli`) or `{ "script", "port" }` (your Node script, started with `--port`) |
 
 Environment variables: `BENDA_DEFAULT_AGENT` overrides `defaultAgent`; `BENDA_WORKSPACE` sets the project root if
 Benda is started outside of it.

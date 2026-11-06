@@ -62,7 +62,7 @@ remotes' utilities. Shared tokens live in `projects/shared/theme.css`.
   "Project / micro frontend" in the context.
 - `loadBenda()` is called in every app. Remotes loaded in the shell do not run their `bootstrap.ts`. Remotes started
   standalone (`ng serve mfe-a`) still get the overlay.
-- Keep `@strokkur/benda-angular` in `devDependencies`: Native Federation shares `dependencies`, and the loader is too
+- Keep `@strokkurio/benda-angular` in `devDependencies`: Native Federation shares `dependencies`, and the loader is too
   small to be worth sharing.
 - `npm run dev` starts the bridge and all apps in parallel (`benda dev`).
 - **Never `ng build` in parallel with `npm run dev`.** The NF dev server serves from `dist/<app>`. A production build

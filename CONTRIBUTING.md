@@ -4,8 +4,8 @@
 
 ```text
 packages/
-  core/       @strokkur/benda          bridge, overlay, `benda` CLI, Claude Code hooks, runner (Claude Code, OpenCode), OpenAPI index
-  angular/    @strokkur/benda-angular  Angular adapter, loadBenda(), ng-add schematic
+  core/       @strokkurio/benda          bridge, overlay, `benda` CLI, Claude Code hooks, runner (Claude Code, OpenCode), OpenAPI index
+  angular/    @strokkurio/benda-angular  Angular adapter, loadBenda(), ng-add schematic
 skill/        the agent skill: SKILL.md, references/<topic>.md
 ```
 
@@ -48,7 +48,7 @@ The overlay's composer (text field with the `/` and `#` menus, Template, Run wit
 shared controls are modules of their own – `overlay/composer.js`, `overlay/tasks-view.js`, `overlay/ui.js` – that work
 on the host's state object, so every browser UI of Benda offers the same agents, sessions and queue.
 
-Adapters receive the core's API through `createAdapter(ctx)` and never import `@strokkur/benda`. Installed from a
+Adapters receive the core's API through `createAdapter(ctx)` and never import `@strokkurio/benda`. Installed from a
 `file:` link, an adapter's real path has no `node_modules` that could resolve the core.
 
 ### Rules
@@ -75,9 +75,9 @@ server to reload after a file changes, and the overlay re-resolves the selection
 
 ### Integration per framework
 
-- **Angular:** `ng add @strokkur/benda-angular` patches the entry file (`loadBenda({ name })` after `bootstrapApplication`),
-  writes `benda.config.json`, the npm scripts and the Claude Code hooks (none with `--agent opencode:…`). The bridge
-  runs as its own process.
+- **Angular:** `ng add @strokkurio/benda-angular` patches the entry file (`loadBenda({ name })` after
+  `bootstrapApplication`), writes `benda.config.json`, the npm scripts and the Claude Code hooks (none with
+  `--agent opencode:…`). The bridge runs as its own process.
 - **Vite (planned, Vue, React, Svelte, …):** one plugin with `apply: 'serve'` that injects the overlay through
   `transformIndexHtml` and starts the bridge in `configureServer` – no separate process, no patch to the entry file.
 
@@ -102,7 +102,7 @@ Test against a real project next to the checkout, with `file:` dependencies:
 ```bash
 cd ../my-angular-app
 npm i -D ../benda/packages/core ../benda/packages/angular
-npx ng add @strokkur/benda-angular
+npx ng add @strokkurio/benda-angular
 npm run dev
 ```
 
@@ -180,7 +180,7 @@ changes (`feat!:`, or a `BREAKING CHANGE:` footer) raise the minor version, `fix
 ### Releasing
 
 [release-please](https://github.com/googleapis/release-please) keeps a release PR open that raises the version in both
-packages, the adapter's peer range on `@strokkur/benda` and the lockfile, and writes `CHANGELOG.md`
+packages, the adapter's peer range on `@strokkurio/benda` and the lockfile, and writes `CHANGELOG.md`
 (`release-please-config.json`, `.release-please-manifest.json`).
 
 1. Run the release check above on the release PR's branch.
@@ -199,7 +199,7 @@ and the release workflow runs the full CI before publishing.
 
 ### One-time setup
 
-- **npm:** create the `strokkur` organisation. Trusted publishing can only be configured for existing packages, so
+- **npm:** create the `strokkurio` organisation. Trusted publishing can only be configured for existing packages, so
   publish `0.1.0` once by hand (`npm publish -w packages/core && npm publish -w packages/angular`) and create the
   GitHub release `v0.1.0` on that commit, so release-please starts from it. Then, for each package, add a trusted
   publisher (Settings → Trusted publishing: GitHub Actions, repository `strokkurio/benda`, workflow `release.yml`,

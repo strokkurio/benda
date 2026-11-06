@@ -1,4 +1,4 @@
-# @strokkur/benda-angular
+# @strokkurio/benda-angular
 
 **Point at an element in your running Angular app – an AI agent changes exactly that element in the source.**
 
@@ -11,12 +11,12 @@ everything with `ng add`. Micro frontends with Native Federation are supported.
 ## Install
 
 ```bash
-npx ng add @strokkur/benda-angular [--project <app>[,<app>]] [--port 4399] [--agent opencode:<provider>/<model>]
+npx ng add @strokkurio/benda-angular [--project <app>[,<app>]] [--port 4399] [--agent opencode:<provider>/<model>]
 npm run dev
 ```
 
 `ng add` calls `loadBenda()` after `bootstrapApplication(...)` in every application, writes `benda.config.json`, adds
-the npm scripts `dev` and `benda` and the Claude Code hooks, and adds `@strokkur/benda` as a devDependency. Restart
+the npm scripts `dev` and `benda` and the Claude Code hooks, and adds `@strokkurio/benda` as a devDependency. Restart
 Claude Code in the project afterwards so it loads the hooks.
 
 With `--agent opencode:<provider>/<model>` the project is local-only: browser tasks run with that OpenCode model,
@@ -27,7 +27,7 @@ Then open your app, press **⌥⇧C** or hold **⌥** (Windows/Linux: **Alt+Shif
 ## `loadBenda()`
 
 ```ts
-import { loadBenda } from '@strokkur/benda-angular';
+import { loadBenda } from '@strokkurio/benda-angular';
 
 bootstrapApplication(App, appConfig)
   .then(() => loadBenda({ name: 'my-app' }))   // or loadBenda({ port: 4400, name: 'my-app' })
