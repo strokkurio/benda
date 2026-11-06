@@ -1,0 +1,15 @@
+{
+  "name": "benda",
+  "private": true,
+  "description": "Point at an element in a running web app, an AI agent changes exactly that element in the source.",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "pack": "mkdir -p dist && npm pack --workspaces --pack-destination dist",
+    "test": "node --test packages/core/test/ packages/angular/test/"
+  },
+  "engines": {
+    "node": ">=20.11"
+  }
+}

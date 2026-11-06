@@ -1,0 +1,28 @@
+{
+  "name": "benda-demo",
+  "private": true,
+  "description": "A small Angular app to try and show Benda on.",
+  "scripts": {
+    "dev": "benda dev",
+    "build": "ng build",
+    "reset": "git restore --source=HEAD -- src && git clean -fdq -- src",
+    "benda": "benda bridge"
+  },
+  "dependencies": {
+    "@angular/common": "^22.2.0",
+    "@angular/compiler": "^22.2.0",
+    "@angular/core": "^22.2.0",
+    "@angular/forms": "^22.2.0",
+    "@angular/platform-browser": "^22.2.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^22.2.4",
+    "@angular/cli": "^22.2.2",
+    "@angular/compiler-cli": "^22.2.0",
+    "@strokkur/benda": "file:../packages/core",
+    "@strokkur/benda-angular": "file:../packages/angular",
+    "typescript": "~6.0.2"
+  }
+}

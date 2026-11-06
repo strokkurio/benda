@@ -1,0 +1,43 @@
+version: '3'
+
+tasks:
+  install:
+    desc: Install the dependencies of the packages and the demo
+    cmds:
+      - npm install
+      - npm install --prefix demo
+
+  test:
+    desc: Run the tests of core and Angular adapter
+    # The Angular analysis tests need TypeScript; without it they are skipped, so take the demo's.
+    env:
+      BENDA_TEST_TYPESCRIPT: '{{.ROOT_DIR}}/demo/node_modules/typescript'
+    cmds:
+      - npm test
+
+  pack:
+    desc: Pack the packages into dist/*.tgz for the release check
+    cmds:
+      - npm run pack
+
+  demo:
+    desc: Start the demo app (:4500) with its bridge (:4499)
+    dir: demo
+    cmds:
+      - npm run dev
+
+  demo:reset:
+    desc: Discard all changes agents made to the demo's sources
+    dir: demo
+    cmds:
+      - npm run reset
+
+  docs:
+    desc: Preview the documentation on http://localhost:8000
+    cmds:
+      - uvx zensical serve
+
+  docs:build:
+    desc: Build the documentation into site/
+    cmds:
+      - uvx zensical build

@@ -1,0 +1,30 @@
+<section id="booking" class="booking container">
+  <h2>Request a booking</h2>
+  @if (sent()) {
+    <p class="success">Thanks, {{ form.value.name }}! We will get back to you within a day.</p>
+  } @else {
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <label>
+        Name
+        <input formControlName="name" autocomplete="name" />
+      </label>
+      <label>
+        Email
+        <input formControlName="email" type="email" autocomplete="email" />
+      </label>
+      <label>
+        Destination
+        <select formControlName="destination">
+          <option>Lisbon</option>
+          <option>Lofoten</option>
+          <option>Kyoto</option>
+        </select>
+      </label>
+      <label>
+        Travellers
+        <input formControlName="travellers" type="number" min="1" max="8" />
+      </label>
+      <button class="button" type="submit">Send request</button>
+    </form>
+  }
+</section>

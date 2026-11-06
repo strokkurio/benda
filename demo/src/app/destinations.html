@@ -1,0 +1,8 @@
+<section id="destinations" class="destinations container">
+  <h2>Popular destinations</h2>
+  <div class="grid">
+    @for (destination of destinations(); track destination.name) {
+      <demo-destination-card [destination]="destination" />
+    }
+  </div>
+</section>

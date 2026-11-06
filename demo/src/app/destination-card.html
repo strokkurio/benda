@@ -1,0 +1,16 @@
+<article class="card">
+  <span class="tag">{{ destination().tag }}</span>
+  <h3>{{ destination().name }}</h3>
+  <p class="country">{{ destination().country }}</p>
+  <dl>
+    <div>
+      <dt>Nights</dt>
+      <dd>{{ destination().nights }}</dd>
+    </div>
+    <div>
+      <dt>Rating</dt>
+      <dd>★ {{ destination().rating }}</dd>
+    </div>
+  </dl>
+  <p class="price">from {{ destination().price | currency: 'EUR' : 'symbol' : '1.0-0' }}</p>
+</article>

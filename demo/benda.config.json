@@ -1,0 +1,6 @@
+{
+  "adapter": "@strokkur/benda-angular",
+  "name": "benda-demo",
+  "defaultAgent": "claude:sonnet",
+  "port": 4499
+}

@@ -1,0 +1,25 @@
+.hero {
+  padding: 80px 0 64px;
+  background: linear-gradient(135deg, var(--color-accent-soft), var(--color-bg));
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--color-accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 13px;
+}
+
+h1 {
+  font-size: 48px;
+  max-width: 14ch;
+}
+
+.lead {
+  max-width: 48ch;
+  margin: 16px 0 32px;
+  color: var(--color-muted);
+  font-size: 18px;
+}

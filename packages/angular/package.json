@@ -1,0 +1,28 @@
+{
+  "name": "@strokkur/benda-angular",
+  "version": "0.1.0",
+  "description": "Angular adapter for Benda: component lookup, source index, data lineage, loadBenda() and ng add.",
+  "type": "module",
+  "license": "UNLICENSED",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    },
+    "./adapter": "./src/adapter.mjs",
+    "./package.json": "./package.json"
+  },
+  "types": "./src/index.d.ts",
+  "sideEffects": false,
+  "schematics": "./schematics/collection.json",
+  "ng-add": {
+    "save": "devDependencies"
+  },
+  "peerDependencies": {
+    "@strokkur/benda": "^0.1.0"
+  },
+  "files": [
+    "src",
+    "schematics"
+  ]
+}

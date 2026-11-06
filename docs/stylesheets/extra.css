@@ -1,0 +1,34 @@
+.benda-hero {
+  padding: 2.5rem 0 1rem;
+}
+
+.benda-hero h1 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 0.8rem;
+  color: var(--md-default-fg-color);
+}
+
+.benda-hero p {
+  font-size: 1.05rem;
+  max-width: 44rem;
+}
+
+.benda-shot,
+.md-typeset .tabbed-block img {
+  display: block;
+  width: 100%;
+  border-radius: 0.6rem;
+  box-shadow: 0 0.5rem 2rem rgb(0 0 0 / 0.15);
+}
+
+.benda-shot {
+  margin: 1.5rem 0 2.5rem;
+}
+
+@media screen and (max-width: 44.9375em) {
+  .benda-hero h1 {
+    font-size: 2rem;
+  }
+}

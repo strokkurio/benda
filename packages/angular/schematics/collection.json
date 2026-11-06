@@ -1,0 +1,10 @@
+{
+  "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "ng-add": {
+      "description": "Adds Benda to an Angular workspace: loadBenda() in every app, benda.config.json, npm scripts and Claude Code hooks.",
+      "factory": "./ng-add/index.js#ngAdd",
+      "schema": "./ng-add/schema.json"
+    }
+  }
+}

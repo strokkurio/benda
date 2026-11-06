@@ -1,0 +1,50 @@
+[project]
+site_name = "Benda"
+site_description = "Point at an element in your running web app – an AI agent changes exactly that element in the source."
+extra_css = ["stylesheets/extra.css"]
+nav = [
+  { "Overview" = [
+    { "Introduction" = "index.md" },
+    "how-it-works.md",
+  ] },
+  { "Getting started" = [
+    "getting-started.md",
+    "local-ai.md",
+  ] },
+  { "Guides" = [
+    "designing.md",
+    "components.md",
+    "data.md",
+    "inventory.md",
+  ] },
+  { "Reference" = [
+    "configuration.md",
+    "cli.md",
+    "security.md",
+    "troubleshooting.md",
+  ] },
+]
+
+[project.theme]
+features = [
+  "content.code.copy",
+  "navigation.sections",
+  "navigation.top",
+  "search.highlight",
+]
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "indigo"
+accent = "indigo"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "indigo"
+accent = "indigo"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to light mode"

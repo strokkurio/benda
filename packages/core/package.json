@@ -1,0 +1,21 @@
+{
+  "name": "@strokkur/benda",
+  "version": "0.1.0",
+  "description": "Benda bridge, overlay, CLI and agent runners. Framework-agnostic; frameworks plug in through adapters.",
+  "type": "module",
+  "license": "UNLICENSED",
+  "bin": {
+    "benda": "./bin/benda.mjs"
+  },
+  "exports": {
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "bin",
+    "src",
+    "overlay"
+  ],
+  "engines": {
+    "node": ">=20.11"
+  }
+}
