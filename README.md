@@ -26,7 +26,7 @@ Supported today: **Angular** (including micro frontends with Native Federation).
 In the root of your Angular workspace:
 
 ```bash
-npx ng add @strokkur/benda-angular
+npx ng add @strokkurio/benda-angular
 npm run dev
 ```
 

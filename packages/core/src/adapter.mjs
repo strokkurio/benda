@@ -1,5 +1,5 @@
 // Framework adapters. The core knows no framework; everything framework-specific comes from the adapter named in
-// benda.config.json (`"adapter": "@strokkur/benda-angular"`), resolved from the project's own node_modules.
+// benda.config.json (`"adapter": "@strokkurio/benda-angular"`), resolved from the project's own node_modules.
 //
 // A Node adapter is a module exporting `createAdapter(ctx)` under the subpath `<package>/adapter`:
 //

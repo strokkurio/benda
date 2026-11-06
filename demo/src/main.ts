@@ -1,7 +1,7 @@
 import { provideBrowserGlobalErrorListeners } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { App } from './app/app';
-import { loadBenda } from '@strokkur/benda-angular';
+import { loadBenda } from '@strokkurio/benda-angular';
 
 bootstrapApplication(App, {
   providers: [provideBrowserGlobalErrorListeners()],

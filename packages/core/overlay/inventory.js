@@ -1254,7 +1254,7 @@ async function init() {
   render();
   if (state.health && !state.health.capabilities?.inventory) {
     state.loading = false;
-    state.error = `The ${state.health.adapter} adapter cannot list building blocks – the Inventory needs an adapter that supports it (e.g. @strokkur/benda-angular).`;
+    state.error = `The ${state.health.adapter} adapter cannot list building blocks – the Inventory needs an adapter that supports it (e.g. @strokkurio/benda-angular).`;
     render();
   } else loadInventory();
   listen();

@@ -83,7 +83,7 @@ Inputs are typically a stack (e.g. "Angular + Tailwind") and a brief in prose.
 5. **Remove the placeholder** (`app.html`/`app.css`/`app.spec.ts`) and build real, small components for the brief.
    Every visible unit is its own component, so Benda can map it cleanly. Follow the rules in the generated `AGENTS.md`
    (signals, `input()`, control flow, a11y).
-6. **Install Benda** → SKILL.md, section B (`npx ng add @strokkur/benda-angular`). Then set `prompt.rules` in
+6. **Install Benda** → SKILL.md, section B (`npx ng add @strokkurio/benda-angular`). Then set `prompt.rules` in
    `benda.config.json` to the chosen styling, e.g. "Use Tailwind utilities and the tokens in
    projects/shared/theme.css, no inline styles.".
 7. **Verify**: `ng build <app>` for every app, _then_ (never in parallel, see `microfrontends.md`) `npm run dev` in the

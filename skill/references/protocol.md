@@ -8,17 +8,17 @@ Browser (overlay.js) ──POST /selection──▶ bridge ──▶ .benda/sele
 
 ## Parts
 
-| Part                                  | Runs in                            | Job                                                                           |
-| ------------------------------------- | ---------------------------------- | ----------------------------------------------------------------------------- |
-| `@strokkur/benda` `overlay/`          | browser (served by the bridge)     | overlay in a shadow DOM: hover, selection, panel, status, Prompt/Data/API/Components tabs; network capture (`overlay-network.js`), live part of the Data tab (`overlay-live.js`) |
-| `@strokkur/benda` `src/bridge.mjs`    | Node, `127.0.0.1:<port>`           | receives selections, resolves source files via the adapter, pushes status     |
-| `@strokkur/benda` `src/agents.mjs`    | bridge                             | agent list (Claude terminal and headless unless `"claude": false`, OpenCode models), runner for both, `run.json`, shared sessions |
-| `@strokkur/benda` `src/tasks.mjs`     | bridge                             | task queue `tasks.json`: hands tasks to Claude (`selection.json`) or the runner, one at a time |
-| `@strokkur/benda` `src/cli.mjs`       | Claude Code hooks / shell / CI     | `benda hook …`, `wait`, `show`, `clear`, `proposal`, `components`, `check`, `bridge`, `dev` |
-| `@strokkur/benda` `src/api-index.mjs` | bridge                             | OpenAPI index: specs, generators, diff, operation matching, response validation, simulated responses |
-| `@strokkur/benda-angular` `browser.js` | browser (served as `/adapter.js`) | component info from `window.ng`, Angular noise in the DOM, live state (`inspect`) |
-| `@strokkur/benda-angular` `adapter.mjs` | bridge, `benda dev`, `benda check` | source index (`@Component` → file, template, project; line heuristic), lineage with forms, check, impact, inserting catalog components, `ng serve` per app |
-| `loadBenda()`                         | app                                | loads `/overlay.js?name=<project>` from the bridge, only in dev mode          |
+| Part                                      | Runs in                            | Job                                                                                                                                                                              |
+|-------------------------------------------|------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `@strokkurio/benda` `overlay/`            | browser (served by the bridge)     | overlay in a shadow DOM: hover, selection, panel, status, Prompt/Data/API/Components tabs; network capture (`overlay-network.js`), live part of the Data tab (`overlay-live.js`) |
+| `@strokkurio/benda` `src/bridge.mjs`      | Node, `127.0.0.1:<port>`           | receives selections, resolves source files via the adapter, pushes status                                                                                                        |
+| `@strokkurio/benda` `src/agents.mjs`      | bridge                             | agent list (Claude terminal and headless unless `"claude": false`, OpenCode models), runner for both, `run.json`, shared sessions                                                |
+| `@strokkurio/benda` `src/tasks.mjs`       | bridge                             | task queue `tasks.json`: hands tasks to Claude (`selection.json`) or the runner, one at a time                                                                                   |
+| `@strokkurio/benda` `src/cli.mjs`         | Claude Code hooks / shell / CI     | `benda hook …`, `wait`, `show`, `clear`, `proposal`, `components`, `check`, `bridge`, `dev`                                                                                      |
+| `@strokkurio/benda` `src/api-index.mjs`   | bridge                             | OpenAPI index: specs, generators, diff, operation matching, response validation, simulated responses                                                                             |
+| `@strokkurio/benda-angular` `browser.js`  | browser (served as `/adapter.js`)  | component info from `window.ng`, Angular noise in the DOM, live state (`inspect`)                                                                                                |
+| `@strokkurio/benda-angular` `adapter.mjs` | bridge, `benda dev`, `benda check` | source index (`@Component` → file, template, project; line heuristic), lineage with forms, check, impact, inserting catalog components, `ng serve` per app                       |
+| `loadBenda()`                             | app                                | loads `/overlay.js?name=<project>` from the bridge, only in dev mode                                                                                                             |
 
 `/overlay.js?name=<project>`: when the name differs from the bridge's project (`name` in `benda.config.json`, else
 the `package.json` name), the bridge serves a `console.warn` instead of the overlay – another project's app on the
@@ -145,7 +145,7 @@ The bridge serves the page and its script (`/inventory.js`, which imports `/ui.j
 | `PreToolUse`       | `benda hook pre-tool-use`   | writes the current step to `.benda/activity.json` while `in-progress` |
 | `Stop`             | `benda hook stop`           | status `in-progress` → `done`, `last_assistant_message` → `summary` |
 
-The hooks call `node "$CLAUDE_PROJECT_DIR/node_modules/@strokkur/benda/bin/benda.mjs"` directly rather than `npx`,
+The hooks call `node "$CLAUDE_PROJECT_DIR/node_modules/@strokkurio/benda/bin/benda.mjs"` directly rather than `npx`,
 because `PreToolUse` runs on every tool call. A failing hook prints an error and exits 0, so it never blocks a prompt.
 In a local-only project (`"claude": false` in `benda.config.json`) every hook does nothing.
 

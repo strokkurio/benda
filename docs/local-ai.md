@@ -43,14 +43,14 @@ opencode models
 **3. Install Benda for this model** – in the root of your Angular workspace:
 
 ```bash
-npx ng add @strokkur/benda-angular --agent opencode:ollama/qwen3.8:27b
+npx ng add @strokkurio/benda-angular --agent opencode:ollama/qwen3.8:27b
 ```
 
 This sets up a local-only project. It writes this `benda.config.json` and no Claude Code hooks:
 
 ```json
 {
-  "adapter": "@strokkur/benda-angular",
+  "adapter": "@strokkurio/benda-angular",
   "port": 4399,
   "claude": false,
   "defaultAgent": "opencode:ollama/qwen3.8:27b",
@@ -79,7 +79,7 @@ Good to know:
   make those local too.
 - The project rules reach the model through `AGENTS.md`, which Benda passes to OpenCode as instructions – keep the
   sections `ng add` wrote there.
-- To use Claude Code in the same project later, run `npx ng add @strokkur/benda-angular --agent claude`; the panel
+- To use Claude Code in the same project later, run `npx ng add @strokkurio/benda-angular --agent claude`; the panel
   then offers both.
 - Local models do best with small, concrete tasks ("make the value bold and one size larger") rather than broad
   redesigns. Select exactly the element to change.

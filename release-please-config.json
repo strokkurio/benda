@@ -9,13 +9,13 @@
       "extra-files": [
         { "type": "json", "path": "packages/core/package.json", "jsonpath": "$.version" },
         { "type": "json", "path": "packages/angular/package.json", "jsonpath": "$.version" },
-        { "type": "json", "path": "packages/angular/package.json", "jsonpath": "$.peerDependencies['@strokkur/benda']" },
+        { "type": "json", "path": "packages/angular/package.json", "jsonpath": "$.peerDependencies['@strokkurio/benda']" },
         { "type": "json", "path": "package-lock.json", "jsonpath": "$.packages['packages/core'].version" },
         { "type": "json", "path": "package-lock.json", "jsonpath": "$.packages['packages/angular'].version" },
         {
           "type": "json",
           "path": "package-lock.json",
-          "jsonpath": "$.packages['packages/angular'].peerDependencies['@strokkur/benda']"
+          "jsonpath": "$.packages['packages/angular'].peerDependencies['@strokkurio/benda']"
         }
       ]
     }

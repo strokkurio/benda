@@ -1,5 +1,5 @@
 {
-  "name": "@strokkur/benda",
+  "name": "@strokkurio/benda",
   "version": "0.1.0",
   "description": "Benda bridge, overlay, CLI and agent runners. Framework-agnostic; frameworks plug in through adapters.",
   "type": "module",

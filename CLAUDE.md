@@ -1,7 +1,7 @@
 # Benda
 
 Point at an element in a running web app, an AI agent changes exactly that element in the source. Product of
-**Strokkur**, a private project (not employer work); packages under `@strokkur/*`.
+**Strokkur**, a private project (not employer work); packages under `@strokkurio/*`.
 
 - `README.md`: what Benda is, quick start, links to the docs.
 - `docs/`: user documentation as a [Zensical](https://zensical.org) site (`zensical.toml`) – getting started, guides,
@@ -42,10 +42,6 @@ API :4010, on `file:` dependencies to `packages/core` and `packages/angular`; `.
 
 ## Open questions
 
-- **Name availability:** whether `benda` is free unscoped on npmjs.org and on GitHub is not yet verified. The scoped
-  packages only need the npm organisation `strokkur`, which should be claimed early: on npm a scope belongs to whoever
-  creates it first, domain ownership does not count.
-- **Scope:** Tafla publishes its product under its own scope (`@tafla/*`) and only reusable parts under
-  `@strokkur/*`. Benda uses `@strokkur/*` for now; a separate `@benda/*` scope would follow the Tafla pattern.
+- **Name availability:** whether `benda` is free unscoped on npmjs.org is not verified; the packages do not need it.
 - **Skill distribution:** the skill lives in `skill/` and users copy it by hand; shipping it in the npm package or as
   a Claude Code plugin (together with the hooks) would make that automatic.

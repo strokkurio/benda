@@ -1,4 +1,4 @@
-# @strokkur/benda
+# @strokkurio/benda
 
 **Point at an element in your running web app – an AI agent changes exactly that element in the source.**
 
@@ -8,7 +8,7 @@ Claude Code hooks and the runner for headless Claude Code and OpenCode tasks. Yo
 own – a framework adapter's installer adds it:
 
 ```bash
-npx ng add @strokkur/benda-angular     # Angular
+npx ng add @strokkurio/benda-angular     # Angular
 ```
 
 ## CLI
