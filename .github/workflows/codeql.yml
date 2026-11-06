@@ -14,7 +14,10 @@ jobs:
   analyze:
     name: Analyze (${{ matrix.language }})
     runs-on: ubuntu-latest
+    # Job permissions replace the workflow's, so contents: read has to be repeated here.
     permissions:
+      contents: read
+      actions: read
       security-events: write
     strategy:
       matrix:
