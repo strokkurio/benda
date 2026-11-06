@@ -1,5 +1,6 @@
 [project]
 site_name = "Benda"
+site_url = "https://strokkurio.github.io/benda/"
 site_description = "Point at an element in your running web app – an AI agent changes exactly that element in the source."
 extra_css = ["stylesheets/extra.css"]
 nav = [

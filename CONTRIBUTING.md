@@ -165,7 +165,8 @@ build references the overlay.
 | `ci.yml`       | push to `main`, pull request | tests on Node 20/22/24, pack + demo production build, strict docs build, zizmor, dependency review (PRs) |
 | `pr-title.yml` | pull request                 | the title is a [Conventional Commit](https://www.conventionalcommits.org)                               |
 | `codeql.yml`   | push, pull request, weekly   | CodeQL for JavaScript and the workflows themselves                                                      |
-| `release.yml`  | push to `main`               | release-please; after a release: all of `ci.yml`, then publish to npm                                   |
+| `release.yml`  | push to `main`               | release-please; after a release: all of `ci.yml`, publish to npm, then the docs to GitHub Pages         |
+| `docs.yml`     | release, manual              | builds the docs at a release tag and deploys them to GitHub Pages                                       |
 
 Dependabot updates the actions (pinned by commit SHA) and the npm dependencies weekly, after a seven-day cooldown.
 
@@ -187,6 +188,8 @@ packages, the adapter's peer range on `@strokkur/benda` and the lockfile, and wr
 3. The release workflow runs CI again, checks that both packages carry the tag's version and waits for approval of the
    `npm` environment; then it publishes core first, then the adapter. A pre-release version (`0.3.0-beta.1`) goes to the
    `next` dist-tag.
+4. After publishing, the docs of the tag go to GitHub Pages, so the site describes the version on npm; pre-releases
+   leave the docs at the last stable version.
 
 npm publishes through trusted publishing (OIDC), with provenance; there is no npm token in the repository.
 
@@ -205,6 +208,8 @@ and the release workflow runs the full CI before publishing.
   GitHub Actions to create pull requests (Settings → Actions → General); enable Sponsorships (Settings → General →
   Features), which shows the button from `.github/FUNDING.yml`.
 - **GitHub environment `npm`:** required reviewers, deployments only from `main`.
+- **GitHub Pages:** source "GitHub Actions" (Settings → Pages). The first site comes from the hand-made `v0.1.0`:
+  run the `Docs` workflow on `main` with `ref` `v0.1.0` (Actions → Docs → Run workflow).
 - **Rulesets:** import `.github/rulesets/main.json` and `.github/rulesets/tags.json` (Settings → Rules → Rulesets →
   New ruleset → Import a ruleset). `main`: pull request with squash merge, all CI, PR title and CodeQL jobs as required
   checks, no force push, maintainers may bypass on pull requests. Tags `v*`: no deletion or update. Creation stays open
