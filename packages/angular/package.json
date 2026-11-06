@@ -3,7 +3,15 @@
   "version": "0.1.0",
   "description": "Angular adapter for Benda: component lookup, source index, data lineage, loadBenda() and ng add.",
   "type": "module",
-  "license": "UNLICENSED",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/strokkurio/benda.git",
+    "directory": "packages/angular"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "types": "./src/index.d.ts",

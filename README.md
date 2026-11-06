@@ -50,3 +50,7 @@ uvx zensical serve
 ```
 
 Contributing and architecture: [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## License
+
+[MIT](LICENSE)

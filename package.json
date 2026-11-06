@@ -1,5 +1,6 @@
 {
   "name": "benda",
+  "version": "0.1.0",
   "private": true,
   "description": "Point at an element in a running web app, an AI agent changes exactly that element in the source.",
   "workspaces": [
@@ -11,5 +12,8 @@
   },
   "engines": {
     "node": ">=20.11"
+  },
+  "devDependencies": {
+    "typescript": "~6.0.2"
   }
 }
