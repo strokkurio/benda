@@ -63,7 +63,8 @@ function formatItem(item, index, depth) {
   return lines.join('\n');
 }
 
-const cell = (value) => String(value ?? '').replace(/\|/g, '\\|').replace(/\n/g, ' ');
+// backslashes too: a trailing one would otherwise escape the cell's closing pipe
+const cell = (value) => String(value ?? '').replace(/[\\|]/g, '\\$&').replace(/\n/g, ' ');
 
 /** The Inventory item a task is about: file, place, relations both ways and the adapter's detail sections. */
 function formatSubject(subject, depth) {
