@@ -4,7 +4,7 @@
 // feature folder) and its relations. Static, with the workspace's own TypeScript compiler; results are cached per
 // file until it changes.
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
-import { basename, dirname, join, resolve, sep } from 'node:path';
+import { basename, dirname, join, resolve } from 'node:path';
 import { importsOf, lineOf, nameOf, parse, rel, resolveModule, typescript, unwrap, walk } from './ast.mjs';
 import { analyseForms } from './forms.mjs';
 import { analyseComponent, componentStores, generatedOutputs, generatorFor, storeLineage } from './lineage.mjs';
@@ -248,7 +248,6 @@ export function createInventory({ workspace, stateDir }) {
     const sf = parse(file);
     const relFile = rel(file);
     const imports = importsOf(sf);
-    const text = sf.text;
     const entries = [];
     // every imported workspace declaration may be an item – resolved against the inventory later
     const importRefs = [...imports.values()].filter((i) => i.file).map((i) => ({ type: 'uses', name: i.imported, file: rel(i.file) }));
@@ -296,7 +295,7 @@ export function createInventory({ workspace, stateDir }) {
           const name = nameOf(decl.name);
           if (FUNCTION_KINDS[type]) entries.push({ kind: FUNCTION_KINDS[type], name, line: lineOf(sf, decl), summary: type, detail: {}, refs: importRefs });
           const init = decl.initializer && unwrap(decl.initializer);
-          if (init && t.isArrayLiteralExpression(init) && (/^Routes?\b|Route\[\]/.test(type) || /routes$/i.test(name) || relFile.endsWith('.routes.ts'))) {
+          if (init && t.isArrayLiteralExpression(init) && (/^Routes?\b/.test(type) || /routes$/i.test(name) || relFile.endsWith('.routes.ts'))) {
             for (const route of routesOf(sf, init, imports, '', [])) {
               entries.push({
                 kind: 'route',
