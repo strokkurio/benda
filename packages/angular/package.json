@@ -1,6 +1,6 @@
 {
   "name": "@strokkurio/benda-angular",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Angular adapter for Benda: component lookup, source index, data lineage, loadBenda() and ng add.",
   "type": "module",
   "license": "MIT",
@@ -28,7 +28,7 @@
     "save": "devDependencies"
   },
   "peerDependencies": {
-    "@strokkurio/benda": "^0.1.1"
+    "@strokkurio/benda": "^0.1.2"
   },
   "files": [
     "src",
