@@ -1,9 +1,10 @@
 {
   "name": "@strokkurio/benda-angular",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Angular adapter for Benda: component lookup, source index, data lineage, loadBenda() and ng add.",
   "type": "module",
   "license": "MIT",
+  "homepage": "https://strokkurio.github.io/benda/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/strokkurio/benda.git",
@@ -27,7 +28,7 @@
     "save": "devDependencies"
   },
   "peerDependencies": {
-    "@strokkurio/benda": "^0.1.0"
+    "@strokkurio/benda": "^0.1.1"
   },
   "files": [
     "src",

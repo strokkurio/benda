@@ -1,6 +1,6 @@
 {
   "name": "benda",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Point at an element in a running web app, an AI agent changes exactly that element in the source.",
   "workspaces": [
