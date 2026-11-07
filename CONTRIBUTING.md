@@ -185,13 +185,15 @@ packages, the adapter's peer range on `@strokkurio/benda` and the lockfile, and 
 
 1. Run the release check above on the release PR's branch.
 2. Merge the release PR. release-please tags `v<version>` and creates the GitHub release.
-3. The release workflow runs CI again, checks that both packages carry the tag's version and waits for approval of the
-   `npm` environment; then it publishes core first, then the adapter. A pre-release version (`0.3.0-beta.1`) goes to the
-   `next` dist-tag.
-4. After publishing, the docs of the tag go to GitHub Pages, so the site describes the version on npm; pre-releases
-   leave the docs at the last stable version.
+3. The release workflow runs CI again, checks that both packages carry the tag's version and stages both on npm
+   (`npm stage publish`). A pre-release version (`0.3.0-beta.1`) is staged for the `next` dist-tag.
+4. Approve the staged versions, core first, then the adapter: `npm stage list @strokkurio/benda`, then
+   `npm stage approve <stage-id>` with your npm 2FA (likewise for `@strokkurio/benda-angular`). Only then are they
+   installable. A wrong build is withdrawn with `npm stage reject <stage-id>`.
+5. After staging, the docs of the tag go to GitHub Pages; pre-releases leave the docs at the last stable version.
 
-npm publishes through trusted publishing (OIDC), with provenance; there is no npm token in the repository.
+npm stages through trusted publishing (OIDC), with provenance; there is no npm token in the repository, and the
+trusted publisher may only stage, so nothing reaches users without a maintainer's 2FA.
 
 The release PR is created with the workflow token, and GitHub does not start workflows for such PRs: its required
 checks stay pending, so a maintainer merges it with the ruleset bypass. Its content is only versions and the changelog,
@@ -203,11 +205,12 @@ and the release workflow runs the full CI before publishing.
   publish `0.1.0` once by hand (`npm publish -w packages/core && npm publish -w packages/angular`) and create the
   GitHub release `v0.1.0` on that commit, so release-please starts from it. Then, for each package, add a trusted
   publisher (Settings → Trusted publishing: GitHub Actions, repository `strokkurio/benda`, workflow `release.yml`,
-  environment `npm`) and set "Require two-factor authentication and disallow tokens".
+  environment `npm`, allowed action `npm stage publish` only) and set "Require two-factor authentication and disallow
+  tokens".
 - **Repository settings:** allow squash merging only, with the pull request title as default commit message; allow
   GitHub Actions to create pull requests (Settings → Actions → General); enable Sponsorships (Settings → General →
   Features), which shows the button from `.github/FUNDING.yml`.
-- **GitHub environment `npm`:** required reviewers, deployments only from `main`.
+- **GitHub environment `npm`:** deployments only from `main`. No required reviewers: the approval on npm is the gate.
 - **GitHub Pages:** source "GitHub Actions" (Settings → Pages). The first site comes from the hand-made `v0.1.0`:
   run the `Docs` workflow on `main` with `ref` `v0.1.0` (Actions → Docs → Run workflow).
 - **Rulesets:** import `.github/rulesets/main.json` and `.github/rulesets/tags.json` (Settings → Rules → Rulesets →
