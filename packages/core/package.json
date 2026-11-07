@@ -4,6 +4,7 @@
   "description": "Benda bridge, overlay, CLI and agent runners. Framework-agnostic; frameworks plug in through adapters.",
   "type": "module",
   "license": "MIT",
+  "homepage": "https://strokkurio.github.io/benda/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/strokkurio/benda.git",

@@ -34,7 +34,8 @@ Open the app, start Claude Code in the project folder (`claude`), and press **�
 
 ## Documentation
 
-The full documentation lives in [`docs/`](docs/) and is built with [Zensical](https://zensical.org):
+The full documentation is at **[strokkurio.github.io/benda](https://strokkurio.github.io/benda/)**; its sources live in
+[`docs/`](docs/) and are built with [Zensical](https://zensical.org):
 
 - [Getting started](docs/getting-started.md) – requirements, new and existing projects, the Benda skill
 - [Use Benda without Claude](docs/local-ai.md) – local models through OpenCode
