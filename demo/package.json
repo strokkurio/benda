@@ -18,8 +18,8 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@angular/build": "^22.2.4",
-    "@angular/cli": "^22.2.2",
+    "@angular/build": "^22.2.6",
+    "@angular/cli": "^22.2.6",
     "@angular/compiler-cli": "^22.2.0",
     "@strokkurio/benda": "file:../packages/core",
     "@strokkurio/benda-angular": "file:../packages/angular",

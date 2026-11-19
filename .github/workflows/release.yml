@@ -28,10 +28,10 @@ jobs:
     uses: $/.github/workflows/ci.yml
 
   publish:
-    name: Publish to npm
+    name: Stage on npm
     needs: [release-please, ci]
     runs-on: ubuntu-latest
-    # Required reviewers on this environment are the manual gate before anything reaches the registry.
+    # The trusted publisher on npm is bound to this environment.
     environment: npm
     permissions:
       contents: read
@@ -56,17 +56,19 @@ jobs:
               exit 1
             fi
           done
-      # Core first: the adapter's peer dependency points at it.
-      - name: Publish
+      # Staged, not published: a maintainer approves each package on npm with 2FA, which no CI credential can do.
+      # npm stage ignores workspaces, so it runs in each package directory.
+      - name: Stage
         env:
           TAG: ${{ needs.release-please.outputs.tag }}
         run: |
           tag=latest
           case "$TAG" in *-*) tag=next ;; esac
-          npm publish -w packages/core --tag "$tag"
-          npm publish -w packages/angular --tag "$tag"
+          (cd packages/core && npm stage publish --tag "$tag")
+          (cd packages/angular && npm stage publish --tag "$tag")
 
-  # After publishing, so the site never describes a version that is not on npm yet; pre-releases keep the stable docs.
+  # After staging; until the versions are approved on npm, the site can be ahead of it.
+  # Pre-releases keep the stable docs.
   docs:
     needs: [release-please, publish]
     if: ${{ !contains(needs.release-please.outputs.tag, '-') }}

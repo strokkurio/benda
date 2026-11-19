@@ -252,7 +252,7 @@ const enumLabel = (v) => {
 };
 const fieldOptions = (h) => (h.enum?.length ? h.enum.map((v) => `${v}=${enumLabel(v)}`).join(', ') : '');
 // a | (an Angular pipe like `date | short`) or a line break would break the Markdown table row
-const cell = (text) => String(text ?? '').replace(/\|/g, '\\|').replace(/\n/g, ' ');
+const cell = (text) => String(text ?? '').replace(/[\\|]/g, '\\$&').replace(/\n/g, ' ');
 
 // ---------------------------------------------------------------- view
 
