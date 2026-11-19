@@ -29,4 +29,4 @@ npx benda hook <event>   # used by the Claude Code hooks: user-prompt-submit | p
 The bridge listens on `127.0.0.1` only, answers browser requests from `localhost` origins only, and serves the overlay
 to apps in dev mode – production builds never contain it. After updating the package, restart the bridge.
 
-Documentation, configuration and troubleshooting: see the [Benda documentation](../../docs/index.md).
+Documentation, configuration and troubleshooting: see the [Benda documentation](https://strokkurio.github.io/benda/).

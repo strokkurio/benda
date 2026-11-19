@@ -40,7 +40,7 @@ const state = {
   places: [], // where new building blocks can go (from the inventory)
   create: null, // the "+ New" form: { kind, project, group, newGroup, fields, spec, operations, bind }
   specs: null, // GET /specs – the APIs a new store can use
-  specDetails: {}, // spec file → GET /specs/detail
+  specDetails: Object.create(null), // spec file → GET /specs/detail; no prototype, file names are keys
   waiting: null, // { since, create } – a data-access proposal was asked for
   proposal: null, // the data-access proposal under review: { name, spec, rows, methods, files, notes, … }
   tasks: [],
@@ -1037,7 +1037,7 @@ function onProposal(proposal) {
   render();
 }
 
-const cell = (value) => String(value ?? '').replace(/\|/g, '\\|').replace(/\n/g, ' ');
+const cell = (value) => String(value ?? '').replace(/[\\|]/g, '\\$&').replace(/\n/g, ' ');
 
 function proposalView() {
   const p = state.proposal;

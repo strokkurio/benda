@@ -38,4 +38,4 @@ It loads the overlay from the local bridge in dev mode and does nothing in produ
 The overlay itself is never part of your bundle. `port` and `name` match `benda.config.json`; `ng add` writes both.
 With `name`, a bridge of another project on the same port does not serve the overlay to your app.
 
-Documentation, configuration and troubleshooting: see the [Benda documentation](../../docs/index.md).
+Documentation, configuration and troubleshooting: see the [Benda documentation](https://strokkurio.github.io/benda/).
