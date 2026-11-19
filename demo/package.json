@@ -23,6 +23,6 @@
     "@angular/compiler-cli": "^22.2.0",
     "@strokkurio/benda": "file:../packages/core",
     "@strokkurio/benda-angular": "file:../packages/angular",
-    "typescript": "~6.0.2"
+    "typescript": "~7.0.2"
   }
 }
